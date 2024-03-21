@@ -14,6 +14,7 @@
 
 4. Empecé con el desarrollo 
 
+```
     Features
     [ x ] As a User I should be able to list the most popular movies.
     [ x ] As a User I should be able to list the now playing movies.
@@ -34,13 +35,16 @@
     [ x ] As a User I should be able to keep scrolling and new results should appear
     (pagination).
     [ ] [BONUS] As a User I should see a movie sorting feature (by date or name)
+```
 
 5. Funcionalidades que agregué como bonus
 
+```
     [ x ] [BONUS] Themes, dark and lingt, funcionan cambiando el tema del disposito
     [ x ] [BONUS] La página de los tabs popular y live se conservan, hice un poco de cacheado de info
     [ x ] [BONUS] El tab de favourites funciona sin internet, la data se almacena en local
     
+```
 
 6. Imágenes 
 
