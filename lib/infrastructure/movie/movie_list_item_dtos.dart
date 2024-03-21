@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+import 'package:kueski_movies_app/domain/movie/movie.dart';
 import 'package:kueski_movies_app/domain/movie/movie_list_item.dart';
 
 class MovieListItemDto {
@@ -46,6 +48,54 @@ class MovieListItemDto {
         voteAverage: json['vote_average'],
         voteCount: json['voteCount'],
       );
+  factory MovieListItemDto.fromMovieDetails(Movie movie) => MovieListItemDto(
+        id: movie.id,
+        adult: movie.adult,
+        originalLanguage: movie.originalLanguage,
+        originalTitle: movie.originalTitle,
+        overview: movie.overview,
+        popularity: movie.popularity,
+        posterPath: movie.posterPath,
+        backdropPath: movie.backdropPath,
+        releaseDate: movie.releaseDate,
+        title: movie.title,
+        video: movie.video,
+        voteAverage: movie.voteAverage,
+        voteCount: movie.voteCount,
+      );
+  factory MovieListItemDto.fromDomain(MovieListItem movie) => MovieListItemDto(
+        id: movie.id,
+        adult: movie.adult,
+        originalLanguage: movie.originalLanguage,
+        originalTitle: movie.originalTitle,
+        overview: movie.overview,
+        popularity: movie.popularity,
+        posterPath: movie.posterPath,
+        backdropPath: movie.backdropPath,
+        releaseDate: movie.releaseDate,
+        title: movie.title,
+        video: movie.video,
+        voteAverage: movie.voteAverage,
+        voteCount: movie.voteCount,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'adult': adult,
+        'original_language': originalLanguage,
+        'original_title': originalTitle,
+        'overview': overview,
+        'popularity': popularity,
+        'poster_path': posterPath,
+        'backdrop_path': backdropPath,
+        'release_date':
+            DateFormat('yyyy-MM-dd').format(releaseDate ?? DateTime.now()),
+        'title': title,
+        'video': video,
+        'vote_average': voteAverage,
+        'voteCount': voteCount,
+      };
+
   MovieListItem toDomain() => MovieListItem(
         id: id,
         adult: adult ?? false,

@@ -20,6 +20,21 @@ class ProductionCompanyDto {
         logoPath: json['logo_path'],
         originCountry: json['origin_country'],
       );
+  factory ProductionCompanyDto.fromDomain(ProductionCompany company) =>
+      ProductionCompanyDto(
+        id: company.id,
+        name: company.name,
+        logoPath: company.logoPath,
+        originCountry: company.originCountry,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'logo_path': logoPath,
+        'origin_country': originCountry,
+      };
+
   ProductionCompany toDomain() => ProductionCompany(
         id: id,
         name: name ?? '',

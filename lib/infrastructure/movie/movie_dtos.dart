@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:kueski_movies_app/domain/movie/movie.dart';
 import 'package:kueski_movies_app/infrastructure/movie/language_dtos.dart';
 import 'package:kueski_movies_app/infrastructure/movie/movie_genre_dtos.dart';
@@ -79,6 +80,60 @@ class MovieDto {
         voteAverage: json['vote_average'],
         voteCount: json['vote_count'],
       );
+
+  factory MovieDto.fromDomain(Movie movie) => MovieDto(
+        id: movie.id,
+        adult: movie.adult,
+        budget: movie.budget,
+        movieGenreDtoList: movie.movieGenreList
+            .map((item) => MovieGenreDto.fromDomain(item))
+            .toList(),
+        productionCompanyDtoList: movie.productionCompanyList
+            .map((item) => ProductionCompanyDto.fromDomain(item))
+            .toList(),
+        spokenLanguageDtoList: movie.spokenLanguageList
+            .map((item) => LanguageDto.fromDomain(item))
+            .toList(),
+        status: movie.status,
+        homePage: movie.homePage,
+        originalLanguage: movie.originalLanguage,
+        originalTitle: movie.originalTitle,
+        overview: movie.overview,
+        popularity: movie.popularity,
+        posterPath: movie.posterPath,
+        backdropPath: movie.backdropPath,
+        releaseDate: movie.releaseDate,
+        title: movie.title,
+        video: movie.video,
+        voteAverage: movie.voteAverage,
+        voteCount: movie.voteCount,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'adult': adult,
+        'budget': budget,
+        'genres': movieGenreDtoList.map((item) => item.toJson()).toList(),
+        'production_companies':
+            productionCompanyDtoList.map((item) => item.toJson()).toList(),
+        'spoken_languages':
+            spokenLanguageDtoList.map((item) => item.toJson()).toList(),
+        'status': status,
+        'home_page': homePage,
+        'original_language': originalLanguage,
+        'original_title': originalTitle,
+        'overview': overview,
+        'popularity': popularity,
+        'poster_path': posterPath,
+        'backdrop_path': backdropPath,
+        'release_date':
+            DateFormat('yyyy-MM-dd').format(releaseDate ?? DateTime.now()),
+        'title': title,
+        'video': video,
+        'vote_average': voteAverage,
+        'vote_count': voteCount,
+      };
+
   Movie toDomain() => Movie(
         id: id,
         adult: adult ?? false,

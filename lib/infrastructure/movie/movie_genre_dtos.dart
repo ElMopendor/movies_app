@@ -13,6 +13,16 @@ class MovieGenreDto {
         id: json['id'],
         name: json['name'],
       );
+
+  factory MovieGenreDto.fromDomain(MovieGenre genre) => MovieGenreDto(
+        id: genre.id,
+        name: genre.name,
+      );
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+      };
+
   MovieGenre toDomain() => MovieGenre(
         id: id,
         name: name ?? '',

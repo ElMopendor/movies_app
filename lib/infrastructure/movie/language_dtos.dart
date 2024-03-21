@@ -16,6 +16,16 @@ class LanguageDto {
         iso639_1: json['iso_639_1'],
         name: json['name'],
       );
+  factory LanguageDto.fromDomain(Language language) => LanguageDto(
+        englishName: language.englishName,
+        iso639_1: language.iso639_1,
+        name: language.name,
+      );
+  Map<String, dynamic> toJson() => {
+        'english_name': englishName,
+        'iso_639_1': iso639_1,
+        'name': name,
+      };
   Language toDomain() => Language(
         englishName: englishName,
         iso639_1: iso639_1 ?? '',
