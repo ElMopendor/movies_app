@@ -9,6 +9,8 @@ ThemeData lightTheme = ThemeData(
   ),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xFF0075FF),
+    primary: const Color(0xFF0075FF),
+    secondary: const Color(0xFFCC00FF),
     brightness: Brightness.light,
   ),
 );
@@ -20,6 +22,8 @@ ThemeData darkTheme = ThemeData(
   ),
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color(0xFF0075FF),
+    primary: const Color(0xFF0075FF),
+    secondary: const Color(0xFFCC00FF),
     brightness: Brightness.dark,
   ),
 );

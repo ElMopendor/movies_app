@@ -1,5 +1,5 @@
 class MovieListItem {
-  const MovieListItem({
+  MovieListItem({
     required this.id,
     required this.adult,
     required this.originalLanguage,
@@ -13,6 +13,7 @@ class MovieListItem {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.isFavourite,
   });
 
   final int id;
@@ -28,6 +29,9 @@ class MovieListItem {
   final bool video;
   final double voteAverage;
   final int voteCount;
+  String? isFavourite;
+
+  void makeFavourite(String aIsFavourite) => isFavourite = aIsFavourite;
 
   @override
   bool operator ==(Object other) =>

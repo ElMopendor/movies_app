@@ -16,7 +16,8 @@ class MovieListItemDto {
       this.title,
       this.video,
       this.voteAverage,
-      this.voteCount});
+      this.voteCount,
+      this.isFavourite});
 
   final int id;
   final bool? adult;
@@ -31,6 +32,7 @@ class MovieListItemDto {
   final bool? video;
   final double? voteAverage;
   final int? voteCount;
+  final String? isFavourite;
 
   factory MovieListItemDto.fromJson(Map<String, dynamic> json) =>
       MovieListItemDto(
@@ -47,6 +49,7 @@ class MovieListItemDto {
         video: json['video'],
         voteAverage: json['vote_average'],
         voteCount: json['voteCount'],
+        isFavourite: json['is_favourite'],
       );
   factory MovieListItemDto.fromMovieDetails(Movie movie) => MovieListItemDto(
         id: movie.id,
@@ -62,6 +65,7 @@ class MovieListItemDto {
         video: movie.video,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
+        isFavourite: movie.isFavourite,
       );
   factory MovieListItemDto.fromDomain(MovieListItem movie) => MovieListItemDto(
         id: movie.id,
@@ -77,9 +81,10 @@ class MovieListItemDto {
         video: movie.video,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
+        isFavourite: movie.isFavourite,
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson({String? aIsFavourite}) => {
         'id': id,
         'adult': adult,
         'original_language': originalLanguage,
@@ -94,6 +99,7 @@ class MovieListItemDto {
         'video': video,
         'vote_average': voteAverage,
         'voteCount': voteCount,
+        'is_favourite': aIsFavourite ?? isFavourite,
       };
 
   MovieListItem toDomain() => MovieListItem(
@@ -110,5 +116,6 @@ class MovieListItemDto {
         video: video ?? false,
         voteAverage: voteAverage ?? 0.0,
         voteCount: voteCount ?? 0,
+        isFavourite: isFavourite ?? 'NONE',
       );
 }

@@ -18,7 +18,7 @@ class MovieClient extends DioForNative implements Dio {
       RequestOptions options, RequestInterceptorHandler handler) async {
     final key = dotenv.env['APIKEY'];
 
-    options.headers.addAll({'Authorization': 'Bearer $key!'});
+    options.headers.addAll({'Authorization': 'B earer ${key!}'});
     return handler.next(options);
   }
 }

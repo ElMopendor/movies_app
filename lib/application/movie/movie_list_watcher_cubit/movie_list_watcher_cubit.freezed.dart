@@ -19,9 +19,10 @@ mixin _$MovieListWatcherState {
   int get actualPopularPage => throw _privateConstructorUsedError;
   int get actualPlayingPage => throw _privateConstructorUsedError;
   MovieWatcherTab get selectedTab => throw _privateConstructorUsedError;
-  Map<String, List<MovieListItem>> get cachedListItem =>
+  Map<int, MovieListItem> get popularMovies =>
       throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isGrid => throw _privateConstructorUsedError;
   Option<Either<MovieException, List<MovieListItem>>>
       get getMovieListExceptionOrSuccessOption =>
           throw _privateConstructorUsedError;
@@ -41,8 +42,9 @@ abstract class $MovieListWatcherStateCopyWith<$Res> {
       {int actualPopularPage,
       int actualPlayingPage,
       MovieWatcherTab selectedTab,
-      Map<String, List<MovieListItem>> cachedListItem,
+      Map<int, MovieListItem> popularMovies,
       bool isLoading,
+      bool isGrid,
       Option<Either<MovieException, List<MovieListItem>>>
           getMovieListExceptionOrSuccessOption});
 }
@@ -64,8 +66,9 @@ class _$MovieListWatcherStateCopyWithImpl<$Res,
     Object? actualPopularPage = null,
     Object? actualPlayingPage = null,
     Object? selectedTab = null,
-    Object? cachedListItem = null,
+    Object? popularMovies = null,
     Object? isLoading = null,
+    Object? isGrid = null,
     Object? getMovieListExceptionOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
@@ -81,13 +84,17 @@ class _$MovieListWatcherStateCopyWithImpl<$Res,
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as MovieWatcherTab,
-      cachedListItem: null == cachedListItem
-          ? _value.cachedListItem
-          : cachedListItem // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<MovieListItem>>,
+      popularMovies: null == popularMovies
+          ? _value.popularMovies
+          : popularMovies // ignore: cast_nullable_to_non_nullable
+              as Map<int, MovieListItem>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGrid: null == isGrid
+          ? _value.isGrid
+          : isGrid // ignore: cast_nullable_to_non_nullable
               as bool,
       getMovieListExceptionOrSuccessOption: null ==
               getMovieListExceptionOrSuccessOption
@@ -111,8 +118,9 @@ abstract class _$$MovieListWatcherStateImplCopyWith<$Res>
       {int actualPopularPage,
       int actualPlayingPage,
       MovieWatcherTab selectedTab,
-      Map<String, List<MovieListItem>> cachedListItem,
+      Map<int, MovieListItem> popularMovies,
       bool isLoading,
+      bool isGrid,
       Option<Either<MovieException, List<MovieListItem>>>
           getMovieListExceptionOrSuccessOption});
 }
@@ -132,8 +140,9 @@ class __$$MovieListWatcherStateImplCopyWithImpl<$Res>
     Object? actualPopularPage = null,
     Object? actualPlayingPage = null,
     Object? selectedTab = null,
-    Object? cachedListItem = null,
+    Object? popularMovies = null,
     Object? isLoading = null,
+    Object? isGrid = null,
     Object? getMovieListExceptionOrSuccessOption = null,
   }) {
     return _then(_$MovieListWatcherStateImpl(
@@ -149,13 +158,17 @@ class __$$MovieListWatcherStateImplCopyWithImpl<$Res>
           ? _value.selectedTab
           : selectedTab // ignore: cast_nullable_to_non_nullable
               as MovieWatcherTab,
-      cachedListItem: null == cachedListItem
-          ? _value._cachedListItem
-          : cachedListItem // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<MovieListItem>>,
+      popularMovies: null == popularMovies
+          ? _value._popularMovies
+          : popularMovies // ignore: cast_nullable_to_non_nullable
+              as Map<int, MovieListItem>,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGrid: null == isGrid
+          ? _value.isGrid
+          : isGrid // ignore: cast_nullable_to_non_nullable
               as bool,
       getMovieListExceptionOrSuccessOption: null ==
               getMovieListExceptionOrSuccessOption
@@ -173,10 +186,11 @@ class _$MovieListWatcherStateImpl implements _MovieListWatcherState {
       {required this.actualPopularPage,
       required this.actualPlayingPage,
       required this.selectedTab,
-      required final Map<String, List<MovieListItem>> cachedListItem,
+      required final Map<int, MovieListItem> popularMovies,
       required this.isLoading,
+      required this.isGrid,
       required this.getMovieListExceptionOrSuccessOption})
-      : _cachedListItem = cachedListItem;
+      : _popularMovies = popularMovies;
 
   @override
   final int actualPopularPage;
@@ -184,23 +198,25 @@ class _$MovieListWatcherStateImpl implements _MovieListWatcherState {
   final int actualPlayingPage;
   @override
   final MovieWatcherTab selectedTab;
-  final Map<String, List<MovieListItem>> _cachedListItem;
+  final Map<int, MovieListItem> _popularMovies;
   @override
-  Map<String, List<MovieListItem>> get cachedListItem {
-    if (_cachedListItem is EqualUnmodifiableMapView) return _cachedListItem;
+  Map<int, MovieListItem> get popularMovies {
+    if (_popularMovies is EqualUnmodifiableMapView) return _popularMovies;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_cachedListItem);
+    return EqualUnmodifiableMapView(_popularMovies);
   }
 
   @override
   final bool isLoading;
+  @override
+  final bool isGrid;
   @override
   final Option<Either<MovieException, List<MovieListItem>>>
       getMovieListExceptionOrSuccessOption;
 
   @override
   String toString() {
-    return 'MovieListWatcherState(actualPopularPage: $actualPopularPage, actualPlayingPage: $actualPlayingPage, selectedTab: $selectedTab, cachedListItem: $cachedListItem, isLoading: $isLoading, getMovieListExceptionOrSuccessOption: $getMovieListExceptionOrSuccessOption)';
+    return 'MovieListWatcherState(actualPopularPage: $actualPopularPage, actualPlayingPage: $actualPlayingPage, selectedTab: $selectedTab, popularMovies: $popularMovies, isLoading: $isLoading, isGrid: $isGrid, getMovieListExceptionOrSuccessOption: $getMovieListExceptionOrSuccessOption)';
   }
 
   @override
@@ -215,9 +231,10 @@ class _$MovieListWatcherStateImpl implements _MovieListWatcherState {
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
             const DeepCollectionEquality()
-                .equals(other._cachedListItem, _cachedListItem) &&
+                .equals(other._popularMovies, _popularMovies) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isGrid, isGrid) || other.isGrid == isGrid) &&
             (identical(other.getMovieListExceptionOrSuccessOption,
                     getMovieListExceptionOrSuccessOption) ||
                 other.getMovieListExceptionOrSuccessOption ==
@@ -230,8 +247,9 @@ class _$MovieListWatcherStateImpl implements _MovieListWatcherState {
       actualPopularPage,
       actualPlayingPage,
       selectedTab,
-      const DeepCollectionEquality().hash(_cachedListItem),
+      const DeepCollectionEquality().hash(_popularMovies),
       isLoading,
+      isGrid,
       getMovieListExceptionOrSuccessOption);
 
   @JsonKey(ignore: true)
@@ -247,8 +265,9 @@ abstract class _MovieListWatcherState implements MovieListWatcherState {
       {required final int actualPopularPage,
       required final int actualPlayingPage,
       required final MovieWatcherTab selectedTab,
-      required final Map<String, List<MovieListItem>> cachedListItem,
+      required final Map<int, MovieListItem> popularMovies,
       required final bool isLoading,
+      required final bool isGrid,
       required final Option<Either<MovieException, List<MovieListItem>>>
           getMovieListExceptionOrSuccessOption}) = _$MovieListWatcherStateImpl;
 
@@ -259,9 +278,11 @@ abstract class _MovieListWatcherState implements MovieListWatcherState {
   @override
   MovieWatcherTab get selectedTab;
   @override
-  Map<String, List<MovieListItem>> get cachedListItem;
+  Map<int, MovieListItem> get popularMovies;
   @override
   bool get isLoading;
+  @override
+  bool get isGrid;
   @override
   Option<Either<MovieException, List<MovieListItem>>>
       get getMovieListExceptionOrSuccessOption;

@@ -12,10 +12,10 @@ abstract class IMovieRepository {
 
   Future<Either<MovieException, Movie>> getMovieDetails({required int movieId});
 
-  Future<Either<MovieException, List<MovieListItem>>> saveMovieToFavourites(
+  Future<Either<MovieException, MovieListItem>> saveMovieToFavourites(
       {required Either<Movie, MovieListItem> movie});
 
-  Future<Either<MovieException, List<MovieListItem>>> removeMovieFromFavourites(
+  Future<Either<MovieException, Unit>> removeMovieFromFavourites(
       {required int movieId});
 
   Future<Either<MovieException, List<MovieListItem>>>

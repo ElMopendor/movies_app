@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 
 import 'package:dartz/dartz.dart';
@@ -25,44 +26,84 @@ class MovieRepository implements IMovieRepository {
     required bool isPlaying,
     DateTime? maxDate,
   }) async {
-    final params = {
-      'include_adult': false,
-      'include_video': false,
-      'language': 'en-US',
-      'page': actualPage,
-      'sort_by': 'popularity.des',
-      'with_release_type': '2|3',
-      'release_date_gte': '{min_date}',
-      'release_date_lte':
-          DateFormat('yyyy-MM-dd').format(maxDate ?? DateTime.now()),
-    };
-    final response =
-        await client.get('discover/movie', queryParameters: params);
+    try {
+      var params = {
+        'include_adult': false,
+        'include_video': false,
+        'language': 'en-US',
+        'page': actualPage,
+        'sort_by': 'popularity.des',
+      };
 
-    if (response.statusCode == 200) {
-      final list = (response.data['results'] as List)
-          .map((jsonItem) => MovieListItemDto.fromJson(jsonItem).toDomain())
-          .toList();
-      return right(list);
-    } else {
-      return left(const MovieException.serverError(
-          statusCode: '404', statusMessage: 'No autorizado'));
+      if (isPlaying) {
+        params.addAll({
+          'with_release_type': '2|3',
+          'release_date_gte': '{min_date}',
+          'release_date_lte':
+              DateFormat('yyyy-MM-dd').format(maxDate ?? DateTime.now()),
+        });
+      }
+      final response =
+          await client.get('/discover/movie', queryParameters: params);
+
+      if (response.statusCode == 200) {
+        final list = (response.data['results'] as List)
+            .map((jsonItem) => MovieListItemDto.fromJson(jsonItem).toDomain())
+            .toList();
+        for (var i = 0; i < list.length; i++) {
+          final isFavourite = await _seeIfMovieIsFavourite(list[i].id);
+          list[i].makeFavourite(isFavourite ? 'YES' : 'NANDEMONAI');
+        }
+        return right(list);
+      } else {
+        return left(const MovieException.unknown());
+      }
+    } on DioException catch (e) {
+      return left(MovieException.serverError(
+          statusCode: e.response?.statusCode ?? 404,
+          statusMessage:
+              e.response?.data['status_message'] ?? 'Error desconocido'));
+    } on Exception catch (_) {
+      return left(const MovieException.unknown());
     }
   }
 
   @override
   Future<Either<MovieException, Movie>> getMovieDetails(
       {required int movieId}) async {
-// http://image.tmdb.org/t/p/w500/mExN6lJHmLeGjwDmDrNNjR4MdCq.jpg
+    try {
+      final response = await client.get('movie/$movieId');
 
-    final response = await client.get('movie/$movieId');
+      if (response.statusCode == 200) {
+        final movie = MovieDto.fromJson(response.data).toDomain();
+        final isFavourite = await _seeIfMovieIsFavourite(movie.id);
+        movie.makeFavourite(isFavourite ? 'YES' : '');
+        return right(movie);
+      } else {
+        return left(const MovieException.unknown());
+      }
+    } on DioException catch (e) {
+      return left(MovieException.serverError(
+          statusCode: e.response?.statusCode ?? 404,
+          statusMessage:
+              e.response?.data['status_message'] ?? 'Error desconocido'));
+    } on Exception catch (_) {
+      return left(const MovieException.unknown());
+    }
+  }
 
-    if (response.statusCode == 200) {
-      final movie = MovieDto.fromJson(response.data).toDomain();
-      return right(movie);
-    } else {
-      return left(const MovieException.serverError(
-          statusCode: '404', statusMessage: 'No autorizado'));
+  Future<bool> _seeIfMovieIsFavourite(int movieId) async {
+    try {
+      final result = await localInstance
+          .collection('movies')
+          .doc(movieId.toString())
+          .get();
+      if (result != null) {
+        return true;
+      }
+      return false;
+    } on Exception catch (_) {
+      return false;
     }
   }
 
@@ -78,7 +119,7 @@ class MovieRepository implements IMovieRepository {
       await localInstance
           .collection('movies')
           .doc(movieToSave.id.toString())
-          .set(movieToSave.toJson());
+          .set(movieToSave.toJson(aIsFavourite: 'YES'));
 
       return right(movieToSave.toDomain());
     } on Exception catch (_) {
@@ -102,6 +143,7 @@ class MovieRepository implements IMovieRepository {
   Future<Either<MovieException, List<MovieListItem>>>
       recoverAllFavouriteMoviesFromLocal() async {
     try {
+      // await localInstance.collection('movies').delete();
       final data = await localInstance.collection('movies').get();
 
       final list = data?.values

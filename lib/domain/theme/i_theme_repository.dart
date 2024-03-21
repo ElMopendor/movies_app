@@ -5,5 +5,5 @@ import 'package:kueski_movies_app/infrastructure/theme/theme_enum.dart';
 abstract class IThemeRepository {
   Future<Either<ThemeException, Unit>> setThemeToLocal(
       {SelectedTheme theme = SelectedTheme.defaultTheme});
-  Either<ThemeException, SelectedTheme> getThemeFromLocal();
+  Future<Either<ThemeException, SelectedTheme>> getThemeFromLocal();
 }

@@ -4,10 +4,10 @@ part 'movie_exceptions.freezed.dart';
 
 @freezed
 abstract class MovieException with _$MovieException {
+  const factory MovieException.unknown() = _Unknown;
   const factory MovieException.unauthorized() = _Unauthorized;
   const factory MovieException.serverError(
-      {required String statusCode,
-      required String statusMessage}) = _ServerError;
+      {required int statusCode, required String statusMessage}) = _ServerError;
   const factory MovieException.cantSaveMovieToFavourites() =
       _CantSaveMovieToFavourites;
   const factory MovieException.cantRemoveMovieFromFavourites() =

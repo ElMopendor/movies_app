@@ -25,6 +25,7 @@ class MovieDto {
     this.video,
     this.voteAverage,
     this.voteCount,
+    this.isFavourite,
   });
 
   final int id;
@@ -40,12 +41,13 @@ class MovieDto {
   final bool? video;
   final double? voteAverage;
   final int? voteCount;
-  final double? budget;
+  final int? budget;
   final List<MovieGenreDto> movieGenreDtoList;
   final List<ProductionCompanyDto> productionCompanyDtoList;
   final List<LanguageDto> spokenLanguageDtoList;
   final String? status;
   final String? homePage;
+  final String? isFavourite;
 
   factory MovieDto.fromJson(Map<String, dynamic> json) => MovieDto(
         id: json['id'],
@@ -107,6 +109,7 @@ class MovieDto {
         video: movie.video,
         voteAverage: movie.voteAverage,
         voteCount: movie.voteCount,
+        isFavourite: movie.isFavourite,
       );
 
   Map<String, dynamic> toJson() => {
@@ -160,5 +163,6 @@ class MovieDto {
         video: video ?? false,
         voteAverage: voteAverage ?? 0,
         voteCount: voteCount ?? 0,
+        isFavourite: isFavourite ?? "false",
       );
 }

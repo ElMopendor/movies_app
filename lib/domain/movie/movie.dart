@@ -3,7 +3,7 @@ import 'package:kueski_movies_app/domain/movie/movie_genre.dart';
 import 'package:kueski_movies_app/domain/movie/production_company.dart';
 
 class Movie {
-  const Movie({
+  Movie({
     required this.id,
     required this.adult,
     required this.budget,
@@ -23,6 +23,7 @@ class Movie {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.isFavourite,
   });
 
   final int id;
@@ -38,12 +39,15 @@ class Movie {
   final bool video;
   final double voteAverage;
   final int voteCount;
-  final double budget;
+  final int budget;
   final List<MovieGenre> movieGenreList;
   final List<ProductionCompany> productionCompanyList;
   final List<Language> spokenLanguageList;
   final String status;
   final String homePage;
+  String? isFavourite;
+
+  void makeFavourite(String aIsFavourite) => isFavourite = aIsFavourite;
 
   @override
   bool operator ==(Object other) =>

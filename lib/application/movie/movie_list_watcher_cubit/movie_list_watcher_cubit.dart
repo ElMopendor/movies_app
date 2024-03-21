@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kueski_movies_app/domain/movie/i_movie_repository.dart';
+import 'package:kueski_movies_app/domain/movie/movie.dart';
 import 'package:kueski_movies_app/domain/movie/movie_exceptions.dart';
 import 'package:kueski_movies_app/domain/movie/movie_list_item.dart';
 
@@ -18,23 +19,27 @@ class MovieListWatcherCubit extends Cubit<MovieListWatcherState> {
 
   Future<void> changeTabMovieList(
       {MovieWatcherTab actualTab = MovieWatcherTab.Popular}) async {
-    //obtain the page to search according to know if its previous page or next page
     emit(state.copyWith(isLoading: true, selectedTab: actualTab));
 
     if (actualTab == MovieWatcherTab.Popular) {
-      final keyToSearch = state.actualPopularPage.toString() + actualTab.name;
-      _getData(key: keyToSearch);
+      _getData(actualPage: state.actualPopularPage, isPlaying: false);
     } else if (actualTab == MovieWatcherTab.IsPlaying) {
-      final keyToSearch = state.actualPlayingPage.toString() + actualTab.name;
-      _getData(key: keyToSearch);
+      _getData(actualPage: state.actualPlayingPage, isPlaying: true);
     } else {
       //refer to actual tab equals to favourites
       final response =
           await movieRepository.recoverAllFavouriteMoviesFromLocal();
 
+      final list = response.fold((f) => [], (list) => list);
+      Map<int, MovieListItem> popularMovies = {};
+      for (final item in list) {
+        popularMovies[item.id] = item;
+      }
+
       // update our cached list of items
       emit(state.copyWith(
         isLoading: false,
+        popularMovies: popularMovies,
         getMovieListExceptionOrSuccessOption: optionOf(response),
       ));
     }
@@ -60,35 +65,45 @@ class MovieListWatcherCubit extends Cubit<MovieListWatcherState> {
       emit(state.copyWith(isLoading: true, actualPopularPage: pageToSearch));
     }
 
-    final key = pageToSearch.toString() + state.selectedTab.name;
-
-    _getData(key: key);
+    _getData(
+        actualPage: pageToSearch,
+        isPlaying: state.selectedTab == MovieWatcherTab.IsPlaying);
   }
 
-  Future<void> _getData({required String key}) async {
-    //verify if cachedlistitem contains our key to search
-    if (state.cachedListItem.containsKey(key)) {
-      emit(state.copyWith(
-        isLoading: false,
-        getMovieListExceptionOrSuccessOption:
-            optionOf(right(state.cachedListItem[key]!)),
-      ));
-    }
-    //make a request to back
-    else {
+  Future<void> _getData(
+      {required int actualPage, required bool isPlaying}) async {
+    final response = await movieRepository.getMovieList(
+        actualPage: actualPage, isPlaying: isPlaying);
+
+    emit(state.copyWith(
+      isLoading: false,
+      getMovieListExceptionOrSuccessOption: optionOf(response),
+    ));
+  }
+
+  Future<void> setFavourite(int movieId, Either<Movie, MovieListItem> movie,
+      String isFavourite) async {
+    if (isFavourite != 'YES') {
       final response =
-          await movieRepository.getMovieList(actualPage: 1, isPlaying: false);
-
-      // update our cached list of items
+          await movieRepository.saveMovieToFavourites(movie: movie);
       if (response.isRight()) {
-        state.cachedListItem[key] =
-            response.fold((_) => throw Error(), (list) => list);
+        final movieResponse =
+            response.fold((f) => throw Error(), (movie) => movie);
+        state.popularMovies[movieResponse.id] = movieResponse;
       }
-
-      emit(state.copyWith(
-        isLoading: false,
-        getMovieListExceptionOrSuccessOption: optionOf(response),
-      ));
+    } else {
+      final response =
+          await movieRepository.removeMovieFromFavourites(movieId: movieId);
+      if (response.isRight()) {
+        if (state.selectedTab == MovieWatcherTab.Favourites) {
+          state.popularMovies.remove(movieId);
+          return;
+        }
+      }
     }
+  }
+
+  void changeViewGridList() {
+    emit(state.copyWith(isGrid: !state.isGrid));
   }
 }

@@ -18,9 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MovieException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -28,8 +28,9 @@ mixin _$MovieException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -37,8 +38,9 @@ mixin _$MovieException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -47,6 +49,7 @@ mixin _$MovieException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -58,6 +61,7 @@ mixin _$MovieException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -69,6 +73,7 @@ mixin _$MovieException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?
@@ -97,6 +102,138 @@ class _$MovieExceptionCopyWithImpl<$Res, $Val extends MovieException>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$UnknownImplCopyWith<$Res> {
+  factory _$$UnknownImplCopyWith(
+          _$UnknownImpl value, $Res Function(_$UnknownImpl) then) =
+      __$$UnknownImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UnknownImplCopyWithImpl<$Res>
+    extends _$MovieExceptionCopyWithImpl<$Res, _$UnknownImpl>
+    implements _$$UnknownImplCopyWith<$Res> {
+  __$$UnknownImplCopyWithImpl(
+      _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UnknownImpl implements _Unknown {
+  const _$UnknownImpl();
+
+  @override
+  String toString() {
+    return 'MovieException.unknown()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UnknownImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
+    required TResult Function() unauthorized,
+    required TResult Function(int statusCode, String statusMessage) serverError,
+    required TResult Function() cantSaveMovieToFavourites,
+    required TResult Function() cantRemoveMovieFromFavourites,
+    required TResult Function() cantGetFavourites,
+  }) {
+    return unknown();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
+    TResult? Function()? unauthorized,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
+    TResult? Function()? cantSaveMovieToFavourites,
+    TResult? Function()? cantRemoveMovieFromFavourites,
+    TResult? Function()? cantGetFavourites,
+  }) {
+    return unknown?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
+    TResult Function()? unauthorized,
+    TResult Function(int statusCode, String statusMessage)? serverError,
+    TResult Function()? cantSaveMovieToFavourites,
+    TResult Function()? cantRemoveMovieFromFavourites,
+    TResult Function()? cantGetFavourites,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_ServerError value) serverError,
+    required TResult Function(_CantSaveMovieToFavourites value)
+        cantSaveMovieToFavourites,
+    required TResult Function(_CantRemoveMovieFromFavourites value)
+        cantRemoveMovieFromFavourites,
+    required TResult Function(_CantGetFavourites value) cantGetFavourites,
+  }) {
+    return unknown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_ServerError value)? serverError,
+    TResult? Function(_CantSaveMovieToFavourites value)?
+        cantSaveMovieToFavourites,
+    TResult? Function(_CantRemoveMovieFromFavourites value)?
+        cantRemoveMovieFromFavourites,
+    TResult? Function(_CantGetFavourites value)? cantGetFavourites,
+  }) {
+    return unknown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_ServerError value)? serverError,
+    TResult Function(_CantSaveMovieToFavourites value)?
+        cantSaveMovieToFavourites,
+    TResult Function(_CantRemoveMovieFromFavourites value)?
+        cantRemoveMovieFromFavourites,
+    TResult Function(_CantGetFavourites value)? cantGetFavourites,
+    required TResult orElse(),
+  }) {
+    if (unknown != null) {
+      return unknown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Unknown implements MovieException {
+  const factory _Unknown() = _$UnknownImpl;
 }
 
 /// @nodoc
@@ -137,9 +274,9 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -150,8 +287,9 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -162,8 +300,9 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -178,6 +317,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -192,6 +332,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -206,6 +347,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?
@@ -232,7 +374,7 @@ abstract class _$$ServerErrorImplCopyWith<$Res> {
           _$ServerErrorImpl value, $Res Function(_$ServerErrorImpl) then) =
       __$$ServerErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String statusCode, String statusMessage});
+  $Res call({int statusCode, String statusMessage});
 }
 
 /// @nodoc
@@ -253,7 +395,7 @@ class __$$ServerErrorImplCopyWithImpl<$Res>
       statusCode: null == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       statusMessage: null == statusMessage
           ? _value.statusMessage
           : statusMessage // ignore: cast_nullable_to_non_nullable
@@ -269,7 +411,7 @@ class _$ServerErrorImpl implements _ServerError {
       {required this.statusCode, required this.statusMessage});
 
   @override
-  final String statusCode;
+  final int statusCode;
   @override
   final String statusMessage;
 
@@ -301,9 +443,9 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -314,8 +456,9 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -326,8 +469,9 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -342,6 +486,7 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -356,6 +501,7 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -370,6 +516,7 @@ class _$ServerErrorImpl implements _ServerError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?
@@ -388,10 +535,10 @@ class _$ServerErrorImpl implements _ServerError {
 
 abstract class _ServerError implements MovieException {
   const factory _ServerError(
-      {required final String statusCode,
+      {required final int statusCode,
       required final String statusMessage}) = _$ServerErrorImpl;
 
-  String get statusCode;
+  int get statusCode;
   String get statusMessage;
   @JsonKey(ignore: true)
   _$$ServerErrorImplCopyWith<_$ServerErrorImpl> get copyWith =>
@@ -439,9 +586,9 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -452,8 +599,9 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -464,8 +612,9 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -480,6 +629,7 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -494,6 +644,7 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -508,6 +659,7 @@ class _$CantSaveMovieToFavouritesImpl implements _CantSaveMovieToFavourites {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?
@@ -571,9 +723,9 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -584,8 +736,9 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -596,8 +749,9 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -612,6 +766,7 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -626,6 +781,7 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -640,6 +796,7 @@ class _$CantRemoveMovieFromFavouritesImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?
@@ -699,9 +856,9 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() unknown,
     required TResult Function() unauthorized,
-    required TResult Function(String statusCode, String statusMessage)
-        serverError,
+    required TResult Function(int statusCode, String statusMessage) serverError,
     required TResult Function() cantSaveMovieToFavourites,
     required TResult Function() cantRemoveMovieFromFavourites,
     required TResult Function() cantGetFavourites,
@@ -712,8 +869,9 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unknown,
     TResult? Function()? unauthorized,
-    TResult? Function(String statusCode, String statusMessage)? serverError,
+    TResult? Function(int statusCode, String statusMessage)? serverError,
     TResult? Function()? cantSaveMovieToFavourites,
     TResult? Function()? cantRemoveMovieFromFavourites,
     TResult? Function()? cantGetFavourites,
@@ -724,8 +882,9 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unknown,
     TResult Function()? unauthorized,
-    TResult Function(String statusCode, String statusMessage)? serverError,
+    TResult Function(int statusCode, String statusMessage)? serverError,
     TResult Function()? cantSaveMovieToFavourites,
     TResult Function()? cantRemoveMovieFromFavourites,
     TResult Function()? cantGetFavourites,
@@ -740,6 +899,7 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Unknown value) unknown,
     required TResult Function(_Unauthorized value) unauthorized,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_CantSaveMovieToFavourites value)
@@ -754,6 +914,7 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Unknown value)? unknown,
     TResult? Function(_Unauthorized value)? unauthorized,
     TResult? Function(_ServerError value)? serverError,
     TResult? Function(_CantSaveMovieToFavourites value)?
@@ -768,6 +929,7 @@ class _$CantGetFavouritesImpl implements _CantGetFavourites {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unknown value)? unknown,
     TResult Function(_Unauthorized value)? unauthorized,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_CantSaveMovieToFavourites value)?

@@ -6,8 +6,9 @@ class MovieListWatcherState with _$MovieListWatcherState {
     required int actualPopularPage,
     required int actualPlayingPage,
     required MovieWatcherTab selectedTab,
-    required Map<String, List<MovieListItem>> cachedListItem,
+    required Map<int, MovieListItem> popularMovies,
     required bool isLoading,
+    required bool isGrid,
     required Option<Either<MovieException, List<MovieListItem>>>
         getMovieListExceptionOrSuccessOption,
   }) = _MovieListWatcherState;
@@ -16,8 +17,9 @@ class MovieListWatcherState with _$MovieListWatcherState {
         actualPopularPage: 1,
         actualPlayingPage: 1,
         selectedTab: MovieWatcherTab.Popular,
-        cachedListItem: {},
+        popularMovies: {},
         isLoading: true,
+        isGrid: false,
         getMovieListExceptionOrSuccessOption: none(),
       );
 }
