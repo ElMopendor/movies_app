@@ -2,12 +2,12 @@
 
 1. Casi siempre se me van las ideas cuando no tengo un diseño para implementar, es por ello que diseñé una idea para poder plasmar los requerimientos del challenge (ahí ando subiendo las imagenes a pasteboard)
 
-![Diseño inicial](https://pasteboard.co/7Cg2hJnUOaB5.png)
+![Diseño inicial](https://gcdnb.pbrd.co/images/7Cg2hJnUOaB5.png?o=1)
 
 
 2. Luego me puse a ver qué arquitectura se podría usar para el desarrollo de la app, me decanté por DDD (Driven Domain Design), siento que tengo ventaja en esta arquitectura, así que la tomé 
 
-![Arquitectura](https://pasteboard.co/kaW4Q3whObfw.png)
+![Arquitectura](https://gcdnb.pbrd.co/images/kaW4Q3whObfw.png)
 
 
 3. Ya luego me puse a hacer un boilerplate para este proyecto, no tenía uno así que lo hice desde cero, de paso actualizé todas las librerías que tenía anteriormente.
@@ -45,7 +45,7 @@
 6. Imágenes 
 
 
-![Trabajo final](https://pasteboard.co/9VEfKE3BBHCQ.png)
+![Trabajo final](https://gcdnb.pbrd.co/images/9VEfKE3BBHCQ.png)
 
 
 7. Para ejecutar el archivo use la versión más reciente de Flutter y cree un .env.dev con los keys de IMovvieDB
