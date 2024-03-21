@@ -1,15 +1,12 @@
 import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
+
 import 'package:kueski_movies_app/domain/theme/i_theme_repository.dart';
 import 'package:kueski_movies_app/domain/theme/theme_exceptions.dart';
 import 'package:kueski_movies_app/infrastructure/theme/theme_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@LazySingleton(as: IThemeRepository)
 class ThemeRepository implements IThemeRepository {
-  SharedPreferences sharedPreferences;
-
-  ThemeRepository(this.sharedPreferences);
+  ThemeRepository();
 
   /// Saves the selected Theme to Local Storage
   ///
@@ -18,7 +15,8 @@ class ThemeRepository implements IThemeRepository {
   Future<Either<ThemeException, Unit>> setThemeToLocal(
       {SelectedTheme theme = SelectedTheme.defaultTheme}) async {
     try {
-      await sharedPreferences.setString('theme', theme.name);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('theme', theme.name);
       return right(unit);
     } catch (e) {
       return left(const ThemeException.cantSaveThemeToLocal());
@@ -29,9 +27,10 @@ class ThemeRepository implements IThemeRepository {
   ///
   /// Throws an [Exception] if shared preferences can't read the theme string
   @override
-  Either<ThemeException, SelectedTheme> getThemeFromLocal() {
+  Future<Either<ThemeException, SelectedTheme>> getThemeFromLocal() async {
     try {
-      final themeName = sharedPreferences.getString('theme');
+      final prefs = await SharedPreferences.getInstance();
+      final themeName = prefs.getString('theme');
       return right(
         themeName != null
             ? SelectedTheme.values.byName(themeName)

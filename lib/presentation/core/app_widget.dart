@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kueski_movies_app/application/movie/movie_list_watcher_cubit/movie_list_watcher_cubit.dart';
 import 'package:kueski_movies_app/application/theme/recover_and_save_theme_watcher_cubit/recover_and_save_theme_watcher_cubit.dart';
 import 'package:kueski_movies_app/infrastructure/theme/theme_enum.dart';
 import 'package:kueski_movies_app/injection.dart';
@@ -15,7 +16,11 @@ class AppWidget extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) =>
-              getIt<RecoverAndSaveThemeWatcherCubit>()..recoverThemeFromLocal(),
+              RecoverAndSaveThemeWatcherCubit()..recoverThemeFromLocal(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              getIt<MovieListWatcherCubit>()..changeTabMovieList(),
         )
       ],
       child: const MaterialWidget(),
