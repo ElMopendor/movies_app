@@ -20,6 +20,12 @@ class MovieRepository implements IMovieRepository {
 
   MovieRepository(this.client, this.localInstance);
 
+  /// Returns the movies list
+  /// Parameters
+  /// [actualPage] is the current indexed page
+  /// [isPlaying] for obtain the most current movies
+  ///
+  /// Throws an [MovieException] if there an error
   @override
   Future<Either<MovieException, List<MovieListItem>>> getMovieList({
     required int actualPage,
@@ -52,7 +58,7 @@ class MovieRepository implements IMovieRepository {
             .toList();
         for (var i = 0; i < list.length; i++) {
           final isFavourite = await _seeIfMovieIsFavourite(list[i].id);
-          list[i].makeFavourite(isFavourite ? 'YES' : 'NANDEMONAI');
+          list[i].makeFavourite(isFavourite ? 'YES' : '');
         }
         return right(list);
       } else {
@@ -68,6 +74,11 @@ class MovieRepository implements IMovieRepository {
     }
   }
 
+  /// Returns details of a movie
+  /// Parameters
+  /// [movieId] is movie id
+  ///
+  /// Throws an [MovieException] if there an error
   @override
   Future<Either<MovieException, Movie>> getMovieDetails(
       {required int movieId}) async {
@@ -92,6 +103,12 @@ class MovieRepository implements IMovieRepository {
     }
   }
 
+  /// Consults to local storage if a movie is favourite or not
+  /// Parameters
+  /// [movieId] to make te consult
+  ///
+  /// Retuns a [bool], true if movie is favourite, false if not
+  ///
   Future<bool> _seeIfMovieIsFavourite(int movieId) async {
     try {
       final result = await localInstance
@@ -107,6 +124,12 @@ class MovieRepository implements IMovieRepository {
     }
   }
 
+  /// Save Movie to Favourites
+  /// Parameters
+  /// [Either<Movie,MovieListItem>], we can save two types of movie models, in particular [MovieListItem]
+  ///
+  /// Retuns a [MovieException] if there an error.
+  ///
   @override
   Future<Either<MovieException, MovieListItem>> saveMovieToFavourites(
       {required Either<Movie, MovieListItem> movie}) async {
@@ -127,6 +150,13 @@ class MovieRepository implements IMovieRepository {
     }
   }
 
+  /// Remove movie from favourites
+  /// Parameters
+  /// [movieId] to make te consult
+  ///
+  /// Retuns a [MovieException], if there's an error.
+  /// Returns [unit] if the process has finished with no problems.
+  ///
   @override
   Future<Either<MovieException, Unit>> removeMovieFromFavourites(
       {required int movieId}) async {
@@ -138,6 +168,10 @@ class MovieRepository implements IMovieRepository {
       return left(const MovieException.cantRemoveMovieFromFavourites());
     }
   }
+
+  /// Get list of Favourite movies saved in local storage
+  ///
+  /// Retuns a [MovieExpcetion], if there's an error.
 
   @override
   Future<Either<MovieException, List<MovieListItem>>>
