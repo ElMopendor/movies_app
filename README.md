@@ -48,7 +48,17 @@
 ![Trabajo final](https://pasteboard.co/9VEfKE3BBHCQ.png)
 
 
-7. Para ejecutar el archivo use la versión más reciente de Flutter
+7. Para ejecutar el archivo use la versión más reciente de Flutter y cree un .env.dev con los keys de IMovvieDB
+
+el .env.dev trae estas variables
+
+```
+APIKEY=yourapikey
+BASE_URL=https://api.themoviedb.org/3/
+IMAGES_URL=http://image.tmdb.org/t/p/w500
+
+```
+Una vez realizado el paso anterior, ya se puede proceder a ejecutar el código
 
 ```
 flutter pub run -d <your_device_id>
