@@ -1,70 +1,119 @@
-<em> # Kueski Movies App </em>
+# 🎬 Movies App
 
-1. Casi siempre se me van las ideas cuando no tengo un diseño para implementar, es por ello que diseñé una idea para poder plasmar los requerimientos del challenge (ahí ando subiendo las imagenes a pasteboard)
+A Flutter mobile app built with **Clean Architecture (DDD)** that consumes The Movie DB API to display popular and now playing movies.
 
-![Diseño inicial](https://gcdnb.pbrd.co/images/7Cg2hJnUOaB5.png?o=1)
+---
 
+## 🧱 Description
 
-2. Luego me puse a ver qué arquitectura se podría usar para el desarrollo de la app, me decanté por DDD (Driven Domain Design), siento que tengo ventaja en esta arquitectura, así que la tomé 
+This project was developed as part of a technical challenge.  
+It implements **Domain-Driven Design (DDD)** principles, **Bloc state management**, and **data caching** for offline access.  
 
-![Arquitectura](https://gcdnb.pbrd.co/images/kaW4Q3whObfw.png)
+The app integrates with **The Movie DB API**, featuring multi-theme support (dark/light), persistent favorites, and pagination.  
+Built completely from scratch, including a custom boilerplate and updated dependencies.
 
+---
 
-3. Ya luego me puse a hacer un boilerplate para este proyecto, no tenía uno así que lo hice desde cero, de paso actualizé todas las librerías que tenía anteriormente.
+## 🧩 Features
 
-4. Empecé con el desarrollo 
+### ✅ Core Features
+- List popular and now-playing movies
+- Switch between list and grid views
+- Movie details:
+  - Name, Poster, Genres, Overview, Popularity
+  - Release date, Languages, Vote average, Status
+- Save and persist favorite movies locally
+- Infinite scroll with pagination
+- Error handling and user feedback
 
-```
-    Features
-    [ x ] As a User I should be able to list the most popular movies.
-    [ x ] As a User I should be able to list the now playing movies.
-    [ x ] As a User I should see the option to change between a list and a grid view.
-    [ x ] As a User I should see the different possible errors (error handling).
-    [ x ] As a User I should be able to see for each movie the following details :
-        [ x ] Name
-        [ x ] Poster
-        [ x ] Genres
-        [ x ] Overview
-        [ x ] Popularity
-        [ x ] Release date
-        [ x ] Languages
-        [ x ] Vote average
-        [ x ] Status
-    [ x ] As a User I should be able to save my favorite movies and I want to see my
-    stored preferences when I open the app again.
-    [ x ] As a User I should be able to keep scrolling and new results should appear
-    (pagination).
-    [ ] [BONUS] As a User I should see a movie sorting feature (by date or name)
-```
+### 🌟 Bonus Features
+- Light and Dark themes (auto-switch with system theme)
+- Cached data for Popular and Now Playing tabs
+- Favorites tab available offline
 
-5. Funcionalidades que agregué como bonus
+---
 
-```
-    [ x ] [BONUS] Themes, dark and lingt, funcionan cambiando el tema del disposito
-    [ x ] [BONUS] La página de los tabs popular y live se conservan, hice un poco de cacheado de info
-    [ x ] [BONUS] El tab de favourites funciona sin internet, la data se almacena en local
-    
-```
+## 🧠 Architecture
 
-6. Imágenes 
+### Clean Architecture (DDD)
 
-
-![Trabajo final](https://gcdnb.pbrd.co/images/9VEfKE3BBHCQ.png)
-
-
-7. Para ejecutar el archivo use la versión más reciente de Flutter y cree un .env.dev con los keys de IMovvieDB
-
-el .env.dev trae estas variables
+The project follows a feature-first folder structure with clear separation of layers:
 
 ```
+lib/
+  core/
+    errors/
+    usecases/
+    theme/
+  features/
+    movies/
+      data/
+        datasources/
+        models/
+        repositories_impl/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        blocs/
+        pages/
+        widgets/
+```
+
+- **Data layer:** Handles API integration and persistence  
+- **Domain layer:** Contains business logic and entities  
+- **Presentation layer:** UI, blocs, and state management  
+
+---
+
+## 🧰 Tech Stack
+
+- Flutter 3.x  
+- Bloc  
+- Freezed  
+- GetIt (dependency injection)  
+- Dartz  
+- SharedPreferences  
+- http  
+- Equatable  
+
+---
+
+## 🚀 Getting Started
+
+```bash
+flutter pub get
+# Create the environment file
+cp .env.example .env.dev
+# Add your TMDB credentials
 APIKEY=yourapikey
 BASE_URL=https://api.themoviedb.org/3/
 IMAGES_URL=http://image.tmdb.org/t/p/w500
 
-```
-Una vez realizado el paso anterior, ya se puede proceder a ejecutar el código
-
-```
-flutter pub run -d <your_device_id>
+# Run
+flutter run -d <your_device_id>
 ```
 
+---
+
+## 🖼️ Screenshots
+
+![Design](https://gcdnb.pbrd.co/images/7Cg2hJnUOaB5.png?o=1)
+![Architecture](https://gcdnb.pbrd.co/images/kaW4Q3whObfw.png)
+![Final Result](https://gcdnb.pbrd.co/images/9VEfKE3BBHCQ.png)
+
+---
+
+## 🧑‍💻 Author
+
+**Luis Aguilar Rojas**  
+Full Stack Engineer (Mobile Focused)  
+[LinkedIn](https://linkedin.com/in/luis-angel-developer) • [GitHub](https://github.com/ElMopendor)
+
+---
+
+### 🏷️ Topics
+```
+flutter clean-architecture ddd bloc themoviedb-api movies-app
+```
